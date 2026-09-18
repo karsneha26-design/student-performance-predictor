@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-c=czl$*)#)mgbog*-m6*@2m&h=b_aqj+_mrt^xi!dlp$vfv#g)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "student-performance-predictor-j1x3.onrender.com",
+]
 
 
 # Application definition
