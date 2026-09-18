@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Analytics Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f3ec;
+            color: #29231f;
+        }
+
+        /* Header */
+        .site-header {
+            max-width: 1100px;
+            margin: 25px auto 10px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #d8c7b2;
+            border-radius: 14px;
+            box-sizing: border-box;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #29231f;
+        }
+
+        .brand-tagline {
+            font-size: 12px;
+            color: #8a7355;
+            margin-top: 3px;
+        }
+
+        .analytics-link {
+            padding: 10px 16px;
+            background: #29231f;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .analytics-link:hover {
+            opacity: 0.85;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-label {
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #b49a6a;
+            margin-top: -5px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            color: #777;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #8a7355;
+        }
+
+        /* Risk Card */
+        .risk-card {
+            border: 1px solid #d8c7b2;
+        }
+
+        .risk-card .number {
+            font-size: 24px;
+        }
+
+        /* Performance Bar */
+        .performance-bar {
+            width: 100%;
+            height: 8px;
+            background: #eee7dd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+        .performance-fill {
+            height: 100%;
+            width: 75%;
+            background: #b49a6a;
+            border-radius: 10px;
+        }
+
+        /* Information Boxes */
+        .info-box {
+            background: white;
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .info-box h2 {
+            margin-top: 0;
+        }
+
+        /* AI Insight */
+        .ai-insight {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f7f3ec;
+            border-left: 4px solid #b49a6a;
+            border-radius: 10px;
+        }
+
+        .ai-insight h3 {
+            margin-top: 0;
+            color: #29231f;
+        }
+
+        .ai-insight p {
+            margin-bottom: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Prediction History */
+        .history-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee7dd;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-item strong {
+            font-size: 22px;
+            color: #8a7355;
+        }
+
+        .history-item span {
+            margin-left: 10px;
+            color: #777;
+            font-weight: bold;
+        }
+
+        .history-item p {
+            margin-bottom: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background: #29231f;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            opacity: 0.85;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .site-header {
+                margin: 15px;
+            }
+
+            .brand-tagline {
+                display: none;
+            }
+
+            .dashboard {
+                margin: 20px auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="brand">
+            <span class="brand-name">StudentAI</span>
+            <span class="brand-tagline">
+                AI-Powered Student Performance
+            </span>
+        </div>
+
+        <a href="/" class="analytics-link">
+            ← Predictor
+        </a>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+
+        <h1>📊 Student Analytics Dashboard</h1>
+
+        <p class="dashboard-label">
+            AI PERFORMANCE INSIGHT
+        </p>
+
+        <p class="subtitle">
+            AI-powered insights into student performance
+        </p>
+
+        <!-- Statistics Cards -->
+        <div class="cards">
+
+            <div class="card">
+                <h3>Predicted Performance</h3>
+
+                <div class="number">
+                    {{ prediction|default:"--" }}%
+                </div>
+
+                {% if prediction %}
+                    <div class="performance-bar">
+                        <div
+                            class="performance-fill"></div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="card">
+                <h3>Attendance</h3>
+
+                <div class="number">
+                    {{ attendance|default:"--" }}%
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Study Hours</h3>
+
+                <div class="number">
+                    {{ study_hours|default:"--" }} hrs
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Previous Marks</h3>
+
+                <div class="number">
+                    {{ previous_marks|default:"--" }}%
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Assignments</h3>
+
+                <div class="number">
+                    {{ assignments|default:"--" }}
+                </div>
+            </div>
+
+            <div class="card risk-card">
+                <h3>AI Risk Level</h3>
+
+                <div class="number">
+                    {{ risk_level|default:"--" }}
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Performance Overview -->
+        <div class="info-box">
+
+            <h2>📈 Performance Overview</h2>
+
+            <p>
+                The dashboard provides an overview of the student's
+                predicted academic performance and learning habits.
+            </p>
+
+            <p>
+                Use the prediction page to enter student information
+                and generate personalized AI-based insights.
+            </p>
+
+            <!-- AI Insight -->
+            <div class="ai-insight">
+
+                <h3>🤖 AI Insight</h3>
+
+                <p>
+                    {{ ai_insight|default:"Complete a prediction to generate your personalized AI insight." }}
+                </p>
+
+            </div>
+
+            <!-- Recommendations -->
+            <div class="ai-insight">
+
+                <h3>💡 Personalized Recommendations</h3>
+
+                {% if recommendations %}
+
+                    <ul>
+                        {% for recommendation in recommendations %}
+                            <li>{{ recommendation }}</li>
+                        {% endfor %}
+                    </ul>
+
+                {% else %}
+
+                    <p>
+                        Complete a prediction to receive personalized
+                        recommendations.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <!-- Prediction History -->
+        <div class="info-box">
+
+            <h2>📜 Prediction History</h2>
+
+            {% if history %}
+
+                {% for item in history %}
+
+                    <div class="history-item">
+
+                        <strong>
+                            {{ item.predicted_performance }}%
+                        </strong>
+
+                        <span>
+                            {{ item.risk_level }}
+                        </span>
+
+                        <p>
+                            Study: {{ item.study_hours }} hrs |
+                            Attendance: {{ item.attendance }}% |
+                            Previous Marks: {{ item.previous_marks }}% |
+                            Assignments: {{ item.assignments }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>
+                    No prediction history available yet.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+        <!-- Back Button -->
+        <a href="/" class="back-button">
+            ← Back to Predictor
+        </a>
+
+    </div>
+
+</body>
+</html>
